@@ -22,7 +22,11 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Clone the repo, run `bundle install`
+
+Then for a super quick demo, just run
+
+`bundle exec ruby examples/volca_keys_demo.rb`
 
 ## Development
 
