@@ -1,5 +1,7 @@
 require "korg_volca/version"
 
+
 module KorgVolca
-  # Your code goes here...
 end
+
+require "korg_volca/keys"
