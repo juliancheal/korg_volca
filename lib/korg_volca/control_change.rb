@@ -1,11 +1,9 @@
-state = MicroMIDI::State.new(nil,@output)
-messages = MicroMIDI::Instructions::Message.new(state)#,{:channel => 0})
-@output.puts(messages.control_change(51,127))
-
 module KorgVolca
   class ControlChange
 
-    def initialize
+    def send_message(args)
+      MidiGenerator.generate_control_change(args)
+      sleep 0.01 # Need a gap before sending musical midi notes
     end
   end
 end

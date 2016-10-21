@@ -1,3 +1,5 @@
+require 'korg_volca/control_change'
+
 module KorgVolca
   module Keys
     class Controls
@@ -20,66 +22,74 @@ module KorgVolca
       DELAY_FEEDBACK = 53
 
       def portamento(value)
-        [PORTAMENTO, value]
+        control_change([PORTAMENTO, value])
       end
 
       def expression(value)
-        [EXPRESSION, value]
+        control_change([EXPRESSION, value])
       end
 
       def voice(value)
-        [VOICE, value]
+        control_change([VOICE, value])
       end
 
       def octave(value)
-        [OCTAVE, value]
+        control_change([OCTAVE, value])
       end
 
       def detune(value)
-        [DETUNE, value]
+        control_change([DETUNE, value])
       end
 
       def vco_eg(value)
-        [VCO_EG, value]
+        control_change([VCO_EG, value])
       end
 
       def vco_cutoff(value)
-        [VCO_CUTOFF, value]
+        control_change([VCO_CUTOFF, value])
       end
 
       def vcf_eg(value)
-        [VCF_EG, value]
+        control_change([VCF_EG, value])
       end
 
       def lfo_rate(value)
-        [LFO_RATE, value]
+        control_change([LFO_RATE, value])
       end
 
       def lfo_pitch(value)
-        [LFO_PITCH, value]
+        control_change([LFO_PITCH, value])
       end
+
       def lfo_cutoff(value)
-        [LFO_CUTOFF, value]
+        control_change([LFO_CUTOFF, value])
       end
 
       def eg_attack(value)
-        [EG_ATTACK, value]
+        control_change([EG_ATTACK, value])
       end
 
       def eg_decay_release(value)
-        [EG_DECAY_RELEASE, value]
+        control_change([EG_DECAY_RELEASE, value])
       end
 
       def eg_sustain(value)
-        [EG_SUSTAIN, value]
+        control_change([EG_SUSTAIN, value])
       end
 
       def delay_time(value)
-        [DELAY_TIME, value]
+        control_change([DELAY_TIME, value])
       end
 
       def delay_feedback(value)
-        [DELAY_FEEDBACK, value]
+        control_change([DELAY_FEEDBACK, value])
+      end
+
+      private
+
+      def control_change(args)
+        @control = ControlChange.new
+        @control.send_message(args)
       end
     end
   end

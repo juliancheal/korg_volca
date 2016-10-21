@@ -35,16 +35,15 @@ module KorgVolca
     end
 
     def self.generate(data, args = nil)
-      # state = MicroMIDI::State.new(nil,@output)
-      # messages = MicroMIDI::Instructions::Message.new(state)
-      # @output = UniMIDI::Output.use(1)
       @midi = MIDI::Session.new(@device)
-      #
-      # @output.puts(messages.control_change(51,127))
-      # @output.puts(0x80, 60, 100)
-      #
       @midi.play(data, 0.5)
       @midi.off
+    end
+
+    def self.generate_control_change(data, args = nil)
+      state = MicroMIDI::State.new(nil,@device)
+      message = MicroMIDI::Instructions::Message.new(state)
+      @device.puts(message.control_change(data[0],data[1]))
     end
   end
 end
