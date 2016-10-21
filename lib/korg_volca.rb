@@ -1,6 +1,5 @@
 require "korg_volca/version"
 
-
 module KorgVolca
 end
 
