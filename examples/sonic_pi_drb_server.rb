@@ -21,12 +21,13 @@ class SonicPiDRBServer
     DRb.thread.join
   end
 
-  def note(value, device)
-    Thread.new(value, device) { |note, device|
-      @log.info("Note: #{note}, Device: #{@devices[device]}")
-      @devices[device].send(:play, note)
+  def note(device_name, note_value, args = {})
+    Thread.new(device_name, note_value, args) do |device, note, params|
+      device_name = "Device: #{@devices[device].name}"
+      @log.info("#{device_name}, Note: #{note}, Params: #{params}}")
+      @devices[device].send(:play, note, params)
       Thread.exit
-    }
+    end
   end
 end
 

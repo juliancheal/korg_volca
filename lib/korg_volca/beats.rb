@@ -27,6 +27,10 @@ module KorgVolca
       @device = KorgVolca::Device.new(connection.devices[model_name][:device])
     end
 
+    def name
+      'Volca Beats'.freeze
+    end
+
     def kick(value = 100)
       play(KICK, value)
     end
@@ -107,15 +111,23 @@ module KorgVolca
       control_change(HAT_GRAIN, value)
     end
 
-    def play(note, *args)
-      @device.play(note, args)
+    def play(note, args)
+      if args[:sustain]
+        raw_play(note, args[:sustain])
+      else
+        raw_play(note, 0.5)
+      end
     end
 
-    def play_chord(*args)
+    def play_chord(args)
       @device.play_chord(args)
     end
 
     private
+
+    def raw_play(note, args)
+      @device.play(note, args)
+    end
 
     def control_change(message, value)
       @device.control_change(message, value)

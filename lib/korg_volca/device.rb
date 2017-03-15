@@ -9,15 +9,15 @@ module KorgVolca
       @midi_generator.generate_control_change(message, value)
     end
 
-    def play(note, *args)
+    def play(note, args)
       if note.is_a?(Hash) && args.empty?
-        @midi_generator.generate(note[:note])
+        @midi_generator.generate(note[:note], args)
       else
         @midi_generator.generate(note, args)
       end
     end
 
-    def play_chord(notes, *args)
+    def play_chord(notes, args)
       @midi_generator.generate(notes, args)
     end
   end

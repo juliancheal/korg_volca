@@ -6,8 +6,8 @@ class MidiGenerator
     @midi = device
   end
 
-  def generate(data, _)
-    @midi.play(data, 0.5)
+  def generate(data, args)
+    @midi.play(data, args)
   end
 
   def generate_control_change(message, value)
