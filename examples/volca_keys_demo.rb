@@ -2,12 +2,6 @@ require 'korg_volca'
 
 volca_keys = KorgVolca::Keys.new
 
-# Lists ID and name of each device
-# volca_keys.list_devices
-
-# Assigns the first midi device as an output
-volca_keys.discover(:first, :output)
-
 volca_keys.eg_sustain(127)
 
 # Play single continuous note
